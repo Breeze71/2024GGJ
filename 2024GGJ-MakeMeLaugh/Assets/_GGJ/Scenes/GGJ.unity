@@ -136,59 +136,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cameras --------------------------------------------------------
       objectReference: {fileID: 0}
-    - target: {fileID: 1137283978754690454, guid: 81084e06d9647d04eae467677ac8e5b7,
+    - target: {fileID: 1535866379347462751, guid: 81084e06d9647d04eae467677ac8e5b7,
         type: 3}
-      propertyPath: HUD
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1137283978754690454, guid: 81084e06d9647d04eae467677ac8e5b7,
-        type: 3}
-      propertyPath: Arrows
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1137283978754690454, guid: 81084e06d9647d04eae467677ac8e5b7,
-        type: 3}
-      propertyPath: Buttons
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1137283978754690454, guid: 81084e06d9647d04eae467677ac8e5b7,
-        type: 3}
-      propertyPath: Joystick
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1137283978754690454, guid: 81084e06d9647d04eae467677ac8e5b7,
-        type: 3}
-      propertyPath: MainCanvas
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1137283978754690454, guid: 81084e06d9647d04eae467677ac8e5b7,
-        type: 3}
-      propertyPath: DeathScreen
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1137283978754690454, guid: 81084e06d9647d04eae467677ac8e5b7,
-        type: 3}
-      propertyPath: PauseScreen
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1137283978754690454, guid: 81084e06d9647d04eae467677ac8e5b7,
-        type: 3}
-      propertyPath: DashBars.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1137283978754690454, guid: 81084e06d9647d04eae467677ac8e5b7,
-        type: 3}
-      propertyPath: HealthBars.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1137283978754690454, guid: 81084e06d9647d04eae467677ac8e5b7,
-        type: 3}
-      propertyPath: AmmoDisplays.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1609943322898537229, guid: 81084e06d9647d04eae467677ac8e5b7,
-        type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_CameraType
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2469048044689431906, guid: 81084e06d9647d04eae467677ac8e5b7,
@@ -264,27 +214,7 @@ PrefabInstance:
     - target: {fileID: 5339272285551368588, guid: 81084e06d9647d04eae467677ac8e5b7,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5486248915316034048, guid: 81084e06d9647d04eae467677ac8e5b7,
-        type: 3}
-      propertyPath: m_ClearFlags
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5486248915316034048, guid: 81084e06d9647d04eae467677ac8e5b7,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5486248915316034048, guid: 81084e06d9647d04eae467677ac8e5b7,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5486248915316034048, guid: 81084e06d9647d04eae467677ac8e5b7,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5887774520372682473, guid: 81084e06d9647d04eae467677ac8e5b7,
         type: 3}
@@ -301,47 +231,19 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -29.19
       objectReference: {fileID: 0}
-    - target: {fileID: 6135002835401641593, guid: 81084e06d9647d04eae467677ac8e5b7,
-        type: 3}
-      propertyPath: m_BackGroundColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6135002835401641593, guid: 81084e06d9647d04eae467677ac8e5b7,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6135002835401641593, guid: 81084e06d9647d04eae467677ac8e5b7,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6135002835401641593, guid: 81084e06d9647d04eae467677ac8e5b7,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6144563779082122126, guid: 81084e06d9647d04eae467677ac8e5b7,
         type: 3}
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1974206122}
-    - target: {fileID: 6144563779082122126, guid: 81084e06d9647d04eae467677ac8e5b7,
-        type: 3}
-      propertyPath: m_LookAt
-      value: 
-      objectReference: {fileID: 1974206122}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 5005020901106867100, guid: 81084e06d9647d04eae467677ac8e5b7, type: 3}
-    - {fileID: 1348567886714993226, guid: 81084e06d9647d04eae467677ac8e5b7, type: 3}
-    - {fileID: 5339272285551368588, guid: 81084e06d9647d04eae467677ac8e5b7, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1609943322898537229, guid: 81084e06d9647d04eae467677ac8e5b7,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1480342543}
+      addedObject: {fileID: 1480342553}
   m_SourcePrefab: {fileID: 100100000, guid: 81084e06d9647d04eae467677ac8e5b7, type: 3}
 --- !u!1 &1013070346
 GameObject:
@@ -460,7 +362,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 234591715}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1480342543
+--- !u!114 &1480342553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -622,6 +524,7 @@ MonoBehaviour:
   - "\u54C8\u54C8"
   - "\u54C8"
   - "\u5475"
+  - "\u70C2"
   confidenceLevel: 1
 --- !u!82 &1961725610
 AudioSource:
