@@ -29,14 +29,13 @@ public class MicrophoneManager : MonoBehaviour
     private bool isStart;
     private bool reStart;//保护机制的开启判断
 
-    private int startPosition;
-    private int endPosition;
-
-
     [Header("语音识别")]
     private PhraseRecognizer phraseRecognizer;
     public string[] keywords = {"哈哈","哈","HA"};
     public ConfidenceLevel confidenceLevel = ConfidenceLevel.Medium;
+
+    public int startPostition;
+    public int endPostition = 0;
 
     void Awake()
     {
@@ -66,7 +65,8 @@ public class MicrophoneManager : MonoBehaviour
         }
 
         isStart = false;
-        aud.clip = Microphone.Start(device,true,999,1000);
+        aud.clip = Microphone.Start(device,true,999,44100);
+
  
     }
     void Update()
@@ -88,10 +88,13 @@ public class MicrophoneManager : MonoBehaviour
             
             if(!isStart)
             {//此处留下判断，当在ProCD外还在说话才会开始录音
-                startPosition = Microphone.GetPosition(null);
-                Debug.Log("Y"+startPosition);
+
+                startPostition = endPostition;
+                Debug.Log("Y"+startPostition);
                 isStart = true;
+                Debug.Log("开始录音");
             }
+            
             if(isStart)
             {
                 ProCD += Time.deltaTime;
@@ -102,7 +105,7 @@ public class MicrophoneManager : MonoBehaviour
 
                         closeCD = 0;
                         reStart = true;
-                        Debug.Log("开始录音");
+
 
                     }
                     else
@@ -110,10 +113,10 @@ public class MicrophoneManager : MonoBehaviour
                         ProCD = 0;
                         isStart = false;
                         reStart = false;
+                        endPostition = Microphone.GetPosition(device);
+                        Debug.Log(endPostition);
                         //呼喊结束，写个方法进行下一步 保存录音
-                        endPosition = Microphone.GetPosition(null);
-                        Debug.Log(endPosition);
-                        SaveRecorder(startPosition,endPosition);
+                        SaveRecorder(startPostition,endPostition);
 
                         Debug.Log("停止录音");
                     }
@@ -133,10 +136,10 @@ public class MicrophoneManager : MonoBehaviour
                     closeCD = 0;
                     isStart = false;
                     reStart = false;
+                    endPostition = Microphone.GetPosition(device);
+                    Debug.Log(endPostition);
                     //呼喊中断，写个方法进行下一步 保存录音
-                    endPosition = Microphone.GetPosition(device);
-                    Debug.Log(endPosition);
-                    SaveRecorder(startPosition,endPosition);  
+                    SaveRecorder(startPostition,endPostition);  
                     Debug.Log("停止录音");
 
                 }
@@ -160,6 +163,8 @@ public class MicrophoneManager : MonoBehaviour
             return 0;
         }
         aud.clip.GetData(volumeData, offset);
+
+
  
         for (int i = 0; i < 128; i++)
         {
@@ -175,19 +180,17 @@ public class MicrophoneManager : MonoBehaviour
     /// <summary>
     /// 保存音频调用的方法
     /// </summary>
-    public void SaveRecorder(int startPosition,int endPosition)
+    public void SaveRecorder(int startPostition,int endPostition)
     {
         if (aud.clip == null)
         {
             Debug.LogError("AudioClip 为空。录制可能尚未开始。");
             return;
         }
-        byte[] wavData = WavUtility.FromAudioClip(aud.clip,startPosition,endPosition);
-        string fileName = "RecordedAudio_" + DateTime.UtcNow.ToString("yyyyMMdd_HHmmss") + ".wav";
-        string filePath = Path.Combine(Application.persistentDataPath, fileName);
-
-        Debug.Log("音频已保存至：" + filePath);
+        byte[] wavData = WavUtility.FromAudioClip(aud.clip,startPostition,endPostition);
         
+
+
     }
 
     private void PhraseRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)

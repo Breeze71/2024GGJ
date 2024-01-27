@@ -185,18 +185,17 @@ public class WavUtility
 
 	#endregion
 
-	public static byte[] FromAudioClip (AudioClip audioClip ,int startPosition, int endPosition )
+	public static byte[] FromAudioClip (AudioClip audioClip,int startPostition,int endPostition)
 	{
 		string file;
-		return FromAudioClip (audioClip,startPosition,endPosition, out file, true);
+		return FromAudioClip (audioClip, startPostition, endPostition,out file, true);
 	}
 
-    public static byte[] FromAudioClip(AudioClip audioClip,int startPosition , int endPosition , out string filepath, bool saveAsFile = true,  string dirname = "recordings")
+	public static byte[] FromAudioClip (AudioClip audioClip, int startPostition, int endPostition,out string filepath, bool saveAsFile = true, string dirname = "recordings")
 	{
 		MemoryStream stream = new MemoryStream ();
 
 		const int headerSize = 44;
-
 
 		// get bit depth
 		UInt16 bitDepth = 16; //BitDepth (audioClip);
@@ -205,16 +204,15 @@ public class WavUtility
 		//Debug.AssertFormat (bitDepth == 16, "Only converting 16 bit is currently supported. The audio clip data is {0} bit.", bitDepth);
 
 		// total file size = 44 bytes for header format and audioClip.samples * factor due to float to Int16 / sbyte conversion
-		// int startSample = (int)(startPosition * audioClip.frequency);
-    	// int endSample = (int)(endPosition * audioClip.frequency);
- 		int fileSize = (endPosition - startPosition) * BlockSize_16Bit + headerSize; // BlockSize (bitDepth)
-
+		int fileSize = (endPostition-startPostition) * BlockSize_16Bit + headerSize; // BlockSize (bitDepth)
+		
+		Debug.Log(audioClip.samples);
 		// chunk descriptor (riff)
 		WriteFileHeader (ref stream, fileSize);
 		// file header (fmt)
 		WriteFileFormat (ref stream, audioClip.channels, audioClip.frequency, bitDepth);
 		// data chunks (data)
-		WriteFileData (ref stream, audioClip, bitDepth,startPosition,endPosition);
+		WriteFileData (ref stream, audioClip, bitDepth, startPostition,endPostition);
 
 		byte[] bytes = stream.ToArray ();
 
@@ -293,64 +291,57 @@ public class WavUtility
 		return count;
 	}
 
-	private static int WriteFileData(ref MemoryStream stream, AudioClip audioClip, UInt16 bitDepth, int startPosition, int endPosition)
+	private static int WriteFileData (ref MemoryStream stream, AudioClip audioClip, UInt16 bitDepth,int startPostition,int endPostition)
 	{
 		int count = 0;
 		int total = 8;
 
 		// Copy float[] data from AudioClip
-		float[] data = new float[audioClip.samples * audioClip.channels];
-		audioClip.GetData(data, 0);
+		float[] data = new float[(endPostition-startPostition) * audioClip.channels];
+		audioClip.GetData (data, startPostition);
 
-		startPosition = Mathf.Clamp(startPosition, 0, data.Length / audioClip.channels);
-		endPosition = Mathf.Clamp(endPosition, 0, data.Length / audioClip.channels);
+		byte[] bytes = ConvertAudioClipDataToInt16ByteArray (data);
 
-		byte[] bytes = ConvertAudioClipDataToInt16ByteArray(data, startPosition, endPosition);
+		byte[] id = Encoding.ASCII.GetBytes ("data");
+		count += WriteBytesToMemoryStream (ref stream, id, "DATA_ID");
 
-		byte[] id = Encoding.ASCII.GetBytes("data");
-		count += WriteBytesToMemoryStream(ref stream, id, "DATA_ID");
-
-		int subchunk2Size = Convert.ToInt32((endPosition - startPosition) * BlockSize_16Bit); // BlockSize (bitDepth)
-		count += WriteBytesToMemoryStream(ref stream, BitConverter.GetBytes(subchunk2Size), "SAMPLES");
+		int subchunk2Size = Convert.ToInt32 ((endPostition-startPostition) * BlockSize_16Bit); // BlockSize (bitDepth)
+		count += WriteBytesToMemoryStream (ref stream, BitConverter.GetBytes (subchunk2Size), "SAMPLES");
 
 		// Validate header
-		Debug.AssertFormat(count == total, "Unexpected wav data id byte count: {0} == {1}", count, total);
+		Debug.AssertFormat (count == total, "Unexpected wav data id byte count: {0} == {1}", count, total);
 
 		// Write bytes to stream
-		count += WriteBytesToMemoryStream(ref stream, bytes, "DATA");
+		count += WriteBytesToMemoryStream (ref stream, bytes, "DATA");
 
 		// Validate audio data
-		Debug.AssertFormat(bytes.Length == (endPosition - startPosition) * sizeof(Int16), "Unexpected AudioClip to wav subchunk2 size: {0} == {1}", bytes.Length, (endPosition - startPosition) * sizeof(Int16));
+		Debug.AssertFormat (bytes.Length == subchunk2Size, "Unexpected AudioClip to wav subchunk2 size: {0} == {1}", bytes.Length, subchunk2Size);
 
 		return count;
 	}
 
-	private static byte[] ConvertAudioClipDataToInt16ByteArray(float[] data, int startPosition, int endPosition)
+	private static byte[] ConvertAudioClipDataToInt16ByteArray (float[] data)
 	{
-		MemoryStream dataStream = new MemoryStream();
+		MemoryStream dataStream = new MemoryStream ();
 
 		int x = sizeof(Int16);
 
 		Int16 maxValue = Int16.MaxValue;
 
-		startPosition = Mathf.Clamp(startPosition, 0, data.Length);
-		endPosition = Mathf.Clamp(endPosition, 0, data.Length);
-
-		for (int i = startPosition; i < endPosition; i++)
-		{
-			dataStream.Write(BitConverter.GetBytes(Convert.ToInt16(data[i] * maxValue)), 0, x);
+		int i = 0;
+		while (i < data.Length) {
+			dataStream.Write (BitConverter.GetBytes (Convert.ToInt16 (data [i] * maxValue)), 0, x);
+			++i;
 		}
-
-		byte[] bytes = dataStream.ToArray();
+		byte[] bytes = dataStream.ToArray ();
 
 		// Validate converted bytes
-		Debug.AssertFormat((endPosition - startPosition) * x == bytes.Length, "Unexpected float[] to Int16 to byte[] size: {0} == {1}", (endPosition - startPosition) * x, bytes.Length);
+		Debug.AssertFormat (data.Length * x == bytes.Length, "Unexpected float[] to Int16 to byte[] size: {0} == {1}", data.Length * x, bytes.Length);
 
-		dataStream.Dispose();
+		dataStream.Dispose ();
 
 		return bytes;
 	}
-
 
 	private static int WriteBytesToMemoryStream (ref MemoryStream stream, byte[] bytes, string tag = "")
 	{
