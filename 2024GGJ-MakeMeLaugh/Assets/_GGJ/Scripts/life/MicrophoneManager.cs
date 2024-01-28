@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using UnityEngine;
-using UnityEngine.iOS;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 using UnityEngine.Windows.Speech;

@@ -7,6 +7,7 @@ namespace V
 {
     public class isToNextScene : MonoBehaviour
     {   
+        public Animator anim;
         public MicrophoneManager microphoneManager;
         public UnityEvent toNextEvent;
 
@@ -14,8 +15,16 @@ namespace V
         void Update()
         {
             if(microphoneManager.isHappy)
-            {
-                toNextEvent.Invoke();
+            {   
+                anim.SetBool("isbegin",true);
+                StartCoroutine(DelayedInvoke());
+            }
+             IEnumerator DelayedInvoke()
+            {   
+            yield return new WaitForSeconds(1f); // 等待两秒
+
+            // 触发 toNextEvent
+            toNextEvent.Invoke();
             }
         
         }
