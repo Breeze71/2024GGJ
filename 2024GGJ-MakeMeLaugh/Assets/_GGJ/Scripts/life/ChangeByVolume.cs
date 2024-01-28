@@ -13,7 +13,6 @@ public class ChangeByVolume : MonoBehaviour
     void Update()
     {
         volume = microphoneManager.volume*scaleSize + 1;//因为volume太小，所以应当乘一些值来放大
-        this.gameObject.transform.localScale = new Vector3(volume,volume);
-        
+        gameObject.transform.localScale = new Vector3(volume,volume);
     }
 }

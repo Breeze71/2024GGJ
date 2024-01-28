@@ -25,11 +25,10 @@ namespace V
         public virtual void DoExitState() { ResetValue(); }
         public virtual void DoFrameUpdate() 
         {
-            Debug.Log("debug");
-            // if(enemyBase.IsInAttackRange)
-            // {
-            //     enemyBase.StateMachine.ChangeState(enemyBase.ChaseState);
-            // }
+            if(enemyBase.IsInLaughRange)
+            {
+                enemyBase.StateMachine.ChangeState(enemyBase.ChaseState);
+            }
         }
         public virtual void DoPhysicsUpdate() {}
         public virtual void DoAnimTriggerEvent(EnemyBase.AnimTriggerTypes _triggerTypes) {}

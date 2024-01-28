@@ -9,6 +9,7 @@ namespace V
     public class RemainingBlueGuysUI : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI remainingBlueGuysTEXT;
+        [SerializeField] private GameObject winUI;
 
         private int currentBlueMan = 0;
 
@@ -17,7 +18,14 @@ namespace V
         {
             GameEventsManager.Instance.RemainBlueManEvent.OnBlueManSpawned += RemainBlueManEvent_OnBlueManSpawned;
             GameEventsManager.Instance.RemainBlueManEvent.OnBlueManDecreased += RemainBlueManEvent_OnBlueManDecreased;
+            GameEventsManager.Instance.RemainBlueManEvent.OnAllBlueManTransfer += RemainBlueManEvent_OnAllBlueManTransfer;
         }
+
+        private void RemainBlueManEvent_OnAllBlueManTransfer()
+        {
+            winUI.SetActive(true);
+        }
+
         private void Start() 
         {
             UpdateRemainingBlueTEXT();    
@@ -26,6 +34,7 @@ namespace V
         {
             GameEventsManager.Instance.RemainBlueManEvent.OnBlueManSpawned -= RemainBlueManEvent_OnBlueManSpawned;
             GameEventsManager.Instance.RemainBlueManEvent.OnBlueManDecreased -= RemainBlueManEvent_OnBlueManDecreased;
+            GameEventsManager.Instance.RemainBlueManEvent.OnAllBlueManTransfer -= RemainBlueManEvent_OnAllBlueManTransfer;
         }
         #endregion
 

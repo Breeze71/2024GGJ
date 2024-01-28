@@ -40,6 +40,7 @@ namespace V
                 timer.Tick();
 
                 enemyBase.SetVelocity(Vector2.zero);
+                targetPos = GetRandomPointCircle();
 
                 return;
             }

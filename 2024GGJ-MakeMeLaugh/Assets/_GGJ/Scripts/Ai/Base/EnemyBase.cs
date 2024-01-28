@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
+using V.Tool.JuicyFeeling;
 
 namespace V
 {
@@ -30,14 +32,15 @@ namespace V
         public EnemyChaseState ChaseState {get; set;}
         #endregion
 
-        #region FSM - var
         public Transform PlayerTransform;
-        #endregion
+        [HideInInspector] public SquashAndStretch DashSquashStretch;
+
 
         #region Unity
         protected virtual void Awake() 
         {
             PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+            DashSquashStretch = GetComponent<SquashAndStretch>();
 
             EnemyIdleBaseInstance = Instantiate(enemyIdleSOBase);
             EnemyChaseBaseInstance = Instantiate(enemyChaseSOBase);
@@ -95,7 +98,7 @@ namespace V
             IsFacingRight = !IsFacingRight;                  
         }
         #endregion
-    
+        
         public void SetLaughStatus(bool _IsInChaseRange)
         {
             IsInLaughRange = _IsInChaseRange;
@@ -104,6 +107,11 @@ namespace V
         public void SetAttackStatus(bool _IsInAttackRange)
         {
             IsInAttackRange = _IsInAttackRange;
+        }
+
+        public virtual void TransferToYello()
+        {
+
         }
 
 
