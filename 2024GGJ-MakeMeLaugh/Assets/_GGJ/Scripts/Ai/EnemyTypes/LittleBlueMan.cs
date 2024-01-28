@@ -7,9 +7,7 @@ namespace V.Ai
 {
     public class LittleBlueMan : EnemyBase
     {
-
-        [SerializeField] private SpriteRenderer spriteRenderer;
-        [SerializeField, ColorUsage(true, true)] private Color color;
+        [SerializeField] private Animator anim;
 
         protected override void Start()
         {
@@ -18,15 +16,13 @@ namespace V.Ai
             GameEventsManager.Instance.RemainBlueManEvent.OnBlueManSpawnedEvent();
         }
 
-        // [Button]
+        [Button]
         public override void TransferToYello()
         {
             GameEventsManager.Instance.RemainBlueManEvent.OnBlueManChangedEvent();
 
             // animation
-            spriteRenderer.color = color;
-
-            // change to yello
+            anim.SetBool("Change", true);
         }
     }
 }
