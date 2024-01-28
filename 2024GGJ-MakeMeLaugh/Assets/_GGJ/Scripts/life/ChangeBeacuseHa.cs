@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using MoreMountains.TopDownEngine;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace V
     {
         public MicrophoneManager microphoneManager;
         private CharacterMovement characterMovement;
+
         void Start()
         {
             characterMovement = GetComponent<CharacterMovement>();
@@ -17,7 +19,8 @@ namespace V
         {
             if(microphoneManager.isHappy)
             {
-                characterMovement.WalkSpeed = 1.5f * characterMovement.WalkSpeed;
+                
+                characterMovement.MovementSpeed += 3;
 
                 microphoneManager.isHappy = false; 
             }
