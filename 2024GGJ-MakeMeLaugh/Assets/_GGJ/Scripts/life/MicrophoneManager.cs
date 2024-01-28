@@ -34,6 +34,8 @@ public class MicrophoneManager : MonoBehaviour
     public string[] keywords = {"哈哈","哈","HA"};
     public ConfidenceLevel confidenceLevel = ConfidenceLevel.Medium;
 
+    public bool isHappy = false;
+
     public int startPostition;
     public int endPostition = 0;
 
@@ -195,6 +197,7 @@ public class MicrophoneManager : MonoBehaviour
 
     private void PhraseRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {  
+        isHappy = true;
         text.text = args.text;
     }
     private void OnDestroy()
