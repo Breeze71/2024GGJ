@@ -36,10 +36,10 @@ namespace V
         public override void DoFrameUpdate()
         {
             base.DoFrameUpdate();
+            timer.Tick();
 
             if(!isDashTimerDone)
             {
-                timer.Tick();
                 enemyBase.Rb.AddForce(dashSpeed * direction);
 
                 return;
@@ -70,6 +70,8 @@ namespace V
             isDashTimerDone = true;
             enemyBase.SetVelocity(Vector2.zero);
             targetPos = GetRandomPointCircle();
+
+            timer.StartTimer();
         }
         private Vector3 GetRandomPointCircle()
         {

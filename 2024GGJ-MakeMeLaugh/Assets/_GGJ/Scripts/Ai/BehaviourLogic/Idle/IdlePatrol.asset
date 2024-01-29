@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patrolMoveRange: 5
   patrolSpeed: 3
+  stopBetweenPatrol: 1.5
+  randomPatrolTimerMax: 2

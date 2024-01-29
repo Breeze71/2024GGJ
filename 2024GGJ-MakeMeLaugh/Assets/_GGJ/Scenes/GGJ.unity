@@ -1829,6 +1829,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueMan_1
       objectReference: {fileID: 0}
+    - target: {fileID: 3286062330135607486, guid: d28d05739891e554cabce9560c2c1bc5,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6374323290612569785, guid: d28d05739891e554cabce9560c2c1bc5,
         type: 3}
       propertyPath: m_RootOrder
@@ -1882,6 +1887,11 @@ PrefabInstance:
     - target: {fileID: 6374323290612569785, guid: d28d05739891e554cabce9560c2c1bc5,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750018970705527584, guid: d28d05739891e554cabce9560c2c1bc5,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3088,6 +3098,11 @@ PrefabInstance:
       propertyPath: microphoneManager
       value: 
       objectReference: {fileID: 1961725609}
+    - target: {fileID: 3254468107758048094, guid: 9c161405a5024eb478b41e5e908ab453,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3490734744551548763, guid: 9c161405a5024eb478b41e5e908ab453,
         type: 3}
       propertyPath: microphoneManager
