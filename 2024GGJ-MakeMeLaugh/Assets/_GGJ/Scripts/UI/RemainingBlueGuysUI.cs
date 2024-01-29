@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace V
 {
@@ -12,6 +13,8 @@ namespace V
         [SerializeField] private GameObject winUI;
 
         private int currentBlueMan = 0;
+        public UnityEvent delectevent;
+
 
         #region Life Cycle
         private void Awake() 
@@ -53,6 +56,7 @@ namespace V
             if(currentBlueMan == 0)
             {
                 GameEventsManager.Instance.RemainBlueManEvent.OnAllBlueManTransferEvent();
+                delectevent.Invoke();
             }
         }
 

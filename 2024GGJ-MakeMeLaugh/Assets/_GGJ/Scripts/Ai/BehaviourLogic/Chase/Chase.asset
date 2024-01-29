@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e20232e09aeb43c48b07b96f12dcd639, type: 3}
   m_Name: Chase
   m_EditorClassIdentifier: 
-  dashSpeed: 50
+  dashSpeed: 25
   dashTimerMax: 0.25
   patrolSpeed: 5
   randomMoveRange: 5

@@ -31,6 +31,7 @@ namespace V
 
             // 加载并播放选择的WAV文件
             audioSource.clip = WavUtility.ToAudioClip(randomWavFile);
+
             audioSource.Play();
             
         }

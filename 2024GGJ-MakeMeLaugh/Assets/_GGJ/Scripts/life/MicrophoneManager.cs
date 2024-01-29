@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 using UnityEngine.Windows.Speech;
@@ -37,6 +38,7 @@ public class MicrophoneManager : MonoBehaviour
 
     public int startPostition;
     public int endPostition = 0;
+    public UnityEvent delectevent;
 
     void Awake()
     {
@@ -51,6 +53,7 @@ public class MicrophoneManager : MonoBehaviour
     void Start()
     {
         aud = GetComponent<AudioSource>();
+
         string[] devices = Microphone.devices;
         
         if(devices.Length > 0)
@@ -82,6 +85,7 @@ public class MicrophoneManager : MonoBehaviour
         volume = GetMaxVolume();
         if(Input.GetKey(KeyCode.Escape))
         {
+            delectevent.Invoke();
             Application.Quit();
         }
         if((volume > minY)&&volume <= maxY)

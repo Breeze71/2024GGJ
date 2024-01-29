@@ -1,25 +1,27 @@
 using UnityEngine;
 using System.IO;
+using UnityEngine.Events;
 
 public class DeleteDirectory : MonoBehaviour
 {
-    private string targetDirectory =Path.Combine(Application.persistentDataPath, "recordings"); // 指定目录的路径
+    private string targetDirectory ;
 
-    void Start()
+    void Awake()
     {
-        DeleteDirectoryRecursive(targetDirectory);
+        targetDirectory = Path.Combine(Application.persistentDataPath, "recordings");
     }
 
-    private void DeleteDirectoryRecursive(string directoryPath)
+    public void DeleteDirectoryRecursive()
     {
+        
         // 检查目录是否存在
-        if (Directory.Exists(directoryPath))
+        if (Directory.Exists(targetDirectory))
         {
             try
             {
                 // 删除目录及其所有内容（包括子目录和文件）
-                Directory.Delete(directoryPath, true);
-                Debug.Log($"Directory {directoryPath} and its contents have been deleted.");
+                Directory.Delete(targetDirectory, true);
+                Debug.Log($"Directory {targetDirectory} and its contents have been deleted.");
             }
             catch (System.Exception e)
             {
@@ -28,7 +30,7 @@ public class DeleteDirectory : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Directory does not exist: {directoryPath}");
+            Debug.LogWarning($"Directory does not exist: {targetDirectory}");
         }
     }
 }
