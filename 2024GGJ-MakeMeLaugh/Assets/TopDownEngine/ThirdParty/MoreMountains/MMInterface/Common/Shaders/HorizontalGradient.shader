@@ -3,7 +3,7 @@ Shader "MoreMountains/HorizontalGradient"
  {
      Properties
      {
-         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
+         _MainTex ("Sprite Texture", 2D) = "white" {}
          _LeftColor("Color1", Color) = (1,1,1,1)
          _RightColor("Color2", Color) = (1,1,1,1)
  		 _StencilComp ("Stencil Comparison", Float) = 8

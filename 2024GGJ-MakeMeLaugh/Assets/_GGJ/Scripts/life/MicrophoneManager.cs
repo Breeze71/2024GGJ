@@ -201,7 +201,7 @@ public class MicrophoneManager : MonoBehaviour
     private void PhraseRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {  
         isHappy = true;
-        text.text = args.text;
+        text.text = args.text + "+1";
     }
     private void OnDestroy()
     {

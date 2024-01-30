@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: IdlePatrol
   m_EditorClassIdentifier: 
   patrolMoveRange: 5
-  patrolSpeed: 3
+  patrolSpeed: 6
   stopBetweenPatrol: 1.5
   randomPatrolTimerMax: 2

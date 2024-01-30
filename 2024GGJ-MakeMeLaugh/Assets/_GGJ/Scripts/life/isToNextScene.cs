@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,12 +17,13 @@ namespace V
         {
             if(microphoneManager.isHappy)
             {   
+                
                 anim.SetBool("isbegin",true);
                 StartCoroutine(DelayedInvoke());
             }
              IEnumerator DelayedInvoke()
             {   
-            yield return new WaitForSeconds(1f); // 等待两秒
+            yield return new WaitForSeconds(0.7f); // 等待两秒
 
             // 触发 toNextEvent
             toNextEvent.Invoke();

@@ -62,7 +62,7 @@ namespace V
 
         private void UpdateRemainingBlueTEXT()
         {
-            remainingBlueGuysTEXT.text = "Remaining Blue Guys: " + currentBlueMan;
+            remainingBlueGuysTEXT.text = ": " +currentBlueMan.ToString();
         }
     }
 }

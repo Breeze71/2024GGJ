@@ -10,6 +10,7 @@ namespace V
     {
         public MicrophoneManager microphoneManager;
         private CharacterMovement characterMovement;
+        public MMFeedbacks Hafeedback;
 
         void Start()
         {
@@ -19,6 +20,8 @@ namespace V
         {
             if(microphoneManager.isHappy)
             {
+
+                Hafeedback.PlayFeedbacks();
                 
                 characterMovement.MovementSpeed += 3;
 

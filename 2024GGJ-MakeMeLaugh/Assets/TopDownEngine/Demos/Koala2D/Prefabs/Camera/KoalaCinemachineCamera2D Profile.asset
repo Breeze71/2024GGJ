@@ -36,7 +36,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: -33
+    value: 0
   intensityX:
     overrideState: 0
     value: 1
@@ -1387,7 +1387,7 @@ MonoBehaviour:
     value: 1
   softKnee:
     overrideState: 1
-    value: 0.475
+    value: 0.072
   clamp:
     overrideState: 1
     value: 65472
@@ -1399,7 +1399,7 @@ MonoBehaviour:
     value: 0
   color:
     overrideState: 1
-    value: {r: 1, g: 1, b: 1, a: 1}
+    value: {r: 1, g: 0, b: 0, a: 1}
   fastMode:
     overrideState: 1
     value: 0
@@ -1431,7 +1431,7 @@ MonoBehaviour:
     value: 0
   color:
     overrideState: 1
-    value: {r: 0, g: 0, b: 0, a: 1}
+    value: {r: 0.99948543, g: 1, b: 0.88113207, a: 1}
   center:
     overrideState: 1
     value: {x: 0.5, y: 0.5}
@@ -1476,7 +1476,7 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.248
+    value: 0.096
   fastMode:
     overrideState: 1
     value: 0
