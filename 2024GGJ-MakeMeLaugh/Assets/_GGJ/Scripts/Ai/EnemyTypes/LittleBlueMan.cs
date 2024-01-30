@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using MoreMountains.Feedbacks;
 using NaughtyAttributes;
 using UnityEngine;
@@ -11,7 +9,6 @@ namespace V.Ai
     {
         public UnityEvent say;
         public MMFeedbacks changefeedback;
-        [SerializeField] private Animator anim;
 
         protected override void Start()
         {
@@ -28,6 +25,13 @@ namespace V.Ai
             // animation
             anim.SetBool("Change", true);
             say.Invoke();
+        }
+
+        protected override void Update()
+        {
+            anim.SetFloat("XVelocity", Rb.velocity.x);
+
+            base.Update();
         }
     }
 }

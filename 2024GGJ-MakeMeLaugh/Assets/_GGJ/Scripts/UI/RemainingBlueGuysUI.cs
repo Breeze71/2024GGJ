@@ -13,7 +13,7 @@ namespace V
         [SerializeField] private GameObject winUI;
 
         private int currentBlueMan = 0;
-        public UnityEvent delectevent;
+
 
 
         #region Life Cycle
@@ -56,7 +56,6 @@ namespace V
             if(currentBlueMan == 0)
             {
                 GameEventsManager.Instance.RemainBlueManEvent.OnAllBlueManTransferEvent();
-                delectevent.Invoke();
             }
         }
 

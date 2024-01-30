@@ -554,7 +554,7 @@ Transform:
   - {fileID: 1528967741611887748}
   - {fileID: 3803285827196159072}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1029295677085223212
 Rigidbody2D:
@@ -598,7 +598,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -640,6 +640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd1dc2fd7280a34cb9a9fc5741365ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <anim>k__BackingField: {fileID: 6680658129198020822}
   enemyIdleSOBase: {fileID: 11400000, guid: eafafbcae46eb3a4a811ceee4020db75, type: 2}
   enemyChaseSOBase: {fileID: 11400000, guid: 1d0f89c2f0424f244abfcfdf9f751ac6, type: 2}
   enemyAttackSOBase: {fileID: 11400000, guid: bb814e839d6789149b168125bcec979c, type: 2}
@@ -661,7 +662,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   changefeedback: {fileID: 6353459964238011345}
-  anim: {fileID: 6680658129198020822}
 --- !u!114 &6106438822072377682
 MonoBehaviour:
   m_ObjectHideFlags: 0

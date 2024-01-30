@@ -9,7 +9,8 @@ namespace V
     public class EnemyBase : MonoBehaviour, IEnemyMoveable, ITriggerCheckable
     {
         public Rigidbody2D Rb {get; set;}
-        public bool IsFacingRight {get; set;} = true;
+        [field : SerializeField] public Animator anim{get; set;}
+        public bool IsFacingRight {get; set;} = false;
 
         public bool IsInLaughRange {get; set;}
         public bool IsInAttackRange {get; set;}
@@ -63,7 +64,7 @@ namespace V
             StateMachine.Initalize(IdleState);
         }
         
-        private void Update() 
+        protected virtual void Update() 
         {
             StateMachine.CurrentEnemyState.FrameUpdate();    
         }
@@ -85,16 +86,30 @@ namespace V
             if(IsFacingRight && _velocity.x < 0f)
             {
                 Flip();
+                Debug.Log("flip");
             }
             else if(!IsFacingRight && _velocity.x > 0)
             {
                 Flip();
+                Debug.Log("flip back");
             }
         }
+
+        [Button]
         private void Flip()
         {
-            Vector3 _rotate = new Vector3(transform.rotation.x, 180f, transform.rotation.z);
-            transform.rotation = Quaternion.Euler(_rotate);
+            if(transform.rotation.y == 0)
+            {
+                Vector3 _rotate = new Vector3(transform.rotation.x, 180f, transform.rotation.z);
+                transform.rotation = Quaternion.Euler(_rotate);
+
+            }
+            else
+            {
+                Vector3 _rotate = new Vector3(transform.rotation.x, 0f, transform.rotation.z);
+                transform.rotation = Quaternion.Euler(_rotate);                
+            }
+
             IsFacingRight = !IsFacingRight;                  
         }
         #endregion
